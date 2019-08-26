@@ -1,0 +1,66 @@
+html{
+    height: 100%;
+}
+body{
+    background-image: url("/back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    color: white;
+}
+.main{
+    padding: 0;
+}
+.main .titleout{
+    background: #eeeeee;
+    opacity: 0.5;
+    margin: 0 auto;
+    margin-top: 240px;
+    height: 150px;
+    padding: 10px 30px 10px 30px;
+}
+.main .title{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 240px;
+    padding: 10px 30px 10px 30px;
+}
+.title h1{
+    font-size: 80px;
+    color: #404040;
+    text-shadow: -3px 2px 5px #555555;
+    text-align: center;
+}
+.title p{
+    font-size: 18px;
+    color: #888888;
+    text-align: center;
+}
+#button{
+    margin-top: 100px;
+}
+button{
+    background: #eeeeee;
+    border-radius: 5px;
+    border: 2px solid #404040;
+    font-size: 20px;
+    padding: 10px 10px 10px 10px;
+}
+button:hover{
+    padding: 15px 15px 15px 15px;
+    font-size: 20px;
+    transition: 0.3s ease;
+}
+.goto{
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background: crimson;
+    color: #eeeeee;
+    padding: 5px 10px 5px 10px;
+}
+.goto:hover{
+    color: #eeeeee;
+    text-decoration: none;
+}

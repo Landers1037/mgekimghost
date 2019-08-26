@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <link href="/css/edit.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<a class="title text-center" href="/">Mgek图床</a>
+
+<div class="main">
+<img class="image" src="{{ img.url }}">
+    <div class="code">
+        <p>嵌入代码</p>
+        <p class="delete" data-toggle="modal" data-target="#myModal">删除</p>
+        <pre>
+<span class="head-img">原图地址</span>{{ img.url }}
+<span class="head-img">HTML代码</span>&lt;img src=&quot;{{ img.url }}&quot;&gt;
+<span class="head-img">Markdown代码</span>![demo]({{ img.url }})
+<span class="head-img">中等大小</span>&lt;img src=&quot;{{ img.url }}&quot; width="640"&gt;</pre>
+    </div>
+</div>
+
+        <div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">删除提示</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- 模态框主体 -->
+      <div class="modal-body">
+        在删除前请确认!!!
+      </div>
+      <!-- 模态框底部 -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="delete_img()">删除</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+    function delete_img() {
+        var temp_form = document.createElement("form");
+            temp_form.action = '/edit/{{ img.id }}';
+            //如需打开新窗口，form的target属性要设置为'_blank'
+            temp_form.target = "_self";
+            temp_form.method = "post";
+            temp_form.style.display = "none";
+            //添加参数
+            document.body.appendChild(temp_form);
+            //提交数据
+            temp_form.submit();
+    }
+</script>
+</body>
+</html>

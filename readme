@@ -1,0 +1,4 @@
+this is a flask image Hosting web service
+这是一个基于flask的简单图床管理平台
+上传本地图片，保存在本地目录下，使用mongoDB进行图片索引
+支持图片上传，下载，删除，图片直链生成

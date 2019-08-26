@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <link href="/css/upload.css" rel="stylesheet">
+</head>
+<body>
+<a class="title text-center" href="/">Mgek图床</a>
+<div class="form text-center">
+ <form class="form form-horizontal" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.title }}
+     <a class="file">{{ form.photo(multiple="multiple")}}点击上传</a>
+    {{ form.submit }}
+</form>
+    <div id="namelist">
+        <pre></pre>
+    </div>
+</div>
+<div class="main">
+    <p class="count text-center">目前图片数量: {{ imgs|length }}</p>
+    <div class="row">
+        {% for img in imgs %}
+            <a href="{{ '/edit/'~img.id }}" class="img col-md-2 col-sm-4" style="background-image:url('{{ img.url_t }}')"></a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    $(".file").on("change","input[type='file']",function(){
+    alert('点击上传按钮，完成上传');
+        var filePath=document.getElementById("photo").files;
+        var filelist = [];
+        for(var i=0;i<filePath.length;i++){
+            filelist.push(filePath[i].name+'\n')
+        }
+        $("#namelist pre").html(filelist)
+})
+</script>
+</body>
+</html>

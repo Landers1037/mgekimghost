@@ -1,0 +1,91 @@
+body{
+    background: #ffffff;
+    font-family: 'Microsoft YaHei UI','Helvetica Neue','Segoe UI',sans-serif;
+}
+.title{
+    display: block;
+    text-shadow: -3px 2px 3px #404040;
+    font-family: "Consolas",sans-serif;
+    background: #808080;
+    font-size: 25px;
+    color: white;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+}
+.title:hover{
+    text-decoration: none;
+    color: white;
+}
+.form{
+    margin-top: 30px;
+}
+input#title{
+    background: #eeeeee;
+    border-radius: 5px;
+    border: 1px solid #404040;
+    outline: none;
+}
+input#photo{
+    position: absolute;
+    width: 80px;
+    border-radius: 5px;
+    background: #eeeeee;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+}
+.file{
+    background: #228fbd;
+    color: white!important;
+    position: relative;
+    padding: 4px 10px;
+    height: 30px;
+    line-height: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #2a5caa;
+    border-radius: 2px;
+    display: inline-block;
+}
+input#submit{
+    background: #eeeeee;
+    border-radius: 2px;
+    border: 1px solid #404040;
+}
+input#submit:hover{
+    background: #222222;
+    color: #fff;
+}
+.count{
+    margin: 0 auto;
+    margin-top: 30px;
+    width: fit-content;
+    padding: 5px 10px 5px 10px;
+    background: #404040;
+    color: white;
+}
+.row{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.row .img {
+    margin-bottom: 10px;
+    border: 1px solid #4d4d4d;
+    height: 200px;
+    margin-left: -1px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#namelist pre{
+    width: 300px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    background: #f0f0f0;
+}
