@@ -12,8 +12,8 @@
 <div class="form text-center">
  <form class="form form-horizontal" method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
-    {{ form.title }}
-     <a class="file">{{ form.photo(multiple="multiple")}}点击上传</a>
+{#    {{ form.title }}#}
+     <p class="file">{{ form.photo(multiple="multiple")}}选择图片</p><br>
     {{ form.submit }}
 </form>
     <div id="namelist">

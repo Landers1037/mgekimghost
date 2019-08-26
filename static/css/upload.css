@@ -27,8 +27,9 @@ input#title{
 }
 input#photo{
     position: absolute;
-    width: 80px;
-    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    border-radius: 20px;
     background: #eeeeee;
     opacity: 0;
     right: 0;
@@ -37,31 +38,39 @@ input#photo{
     filter: alpha(opacity=0);
 }
 .file{
-    background: #228fbd;
+    background: #378de5;
+    margin-bottom: 15px;
     color: white!important;
     position: relative;
-    padding: 4px 10px;
-    height: 30px;
-    line-height: 20px;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
     font-size: 16px;
     cursor: pointer;
-    border: 1px solid #2a5caa;
-    border-radius: 2px;
+    border-radius: 20px;
     display: inline-block;
+}
+.file:hover{
+    background: #2a8fbd;
+    transition: 0.3s ease;
 }
 input#submit{
     background: #eeeeee;
-    border-radius: 2px;
-    border: 1px solid #404040;
+    width: 120px;
+    padding: 4px 0 4px 0;
+    border-radius: 20px;
+    border: none;
 }
 input#submit:hover{
     background: #222222;
     color: #fff;
+    transition: 0.3s ease;
 }
 .count{
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 10px;
     width: fit-content;
+    font-size: 14px;
     padding: 5px 10px 5px 10px;
     background: #404040;
     color: white;
