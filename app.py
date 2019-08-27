@@ -13,6 +13,7 @@ from Config import Common,users
 app = Flask(__name__,static_url_path='')
 app.config.from_object(Common)
 app.jinja_env.auto_reload = True
+
 db = SQLAlchemy(app)
 login = LoginManager(app)
 photos = UploadSet('photos', IMAGES)
@@ -96,16 +97,78 @@ def edit(name):
     if request.method == 'POST':
         #删除图片，同时删除数据库
         de_img = Photo.query.get(int(name))
-        filename = re.search("/photos/(.*)",de_img.url,re.S).group(1)
-        os.remove(photos.path(filename))
-        db.session.delete(de_img)
-        db.session.commit()
-
+        try:
+            filename = re.search("/photos/(.*)",de_img.url,re.S).group(1)
+            os.remove(photos.path(filename))
+            os.remove(current_app.config['UPLOADED_PHOTOS_DEST'] + '/thumb/' + filename.replace(".", "_t."))
+            db.session.delete(de_img)
+            db.session.commit()
+        except:
+            pass
         return redirect(url_for('new_photo'))
 
     return render_template('edit.html',img=img)
 
+# 批量删除
+@app.route('/edit/',methods=['GET','POST'])
+def del_all():
+    if request.method == 'POST':
+        ids = request.form["ids"].split(",")
+        for id in ids:
+        #删除图片，同时删除数据库
+            de_img = Photo.query.get(id)
+            try:
+                filename = re.search("/photos/(.*)",de_img.url,re.S).group(1)
+                os.remove(photos.path(filename))
+                os.remove(current_app.config['UPLOADED_PHOTOS_DEST']+'/thumb/'+filename.replace(".","_t."))
+                db.session.delete(de_img)
+                db.session.commit()
+            except Exception as e:
+                print(e.args)
+                pass
 
+        return redirect(url_for('new_photo'))
+
+    return redirect(url_for('new_photo'))
+
+# 批量下载
+@app.route('/download/',methods=['GET','POST'])
+def download_all():
+    import zipfile
+    zippath = os.getcwd()+"/images/img.zip"
+    if request.method == 'POST':
+        ids = request.form["ids"].split(",")
+        zipf = zipfile.ZipFile(zippath, 'w')
+        for id in ids:
+        #删除图片，同时删除数据库
+            de_img = Photo.query.get(id)
+            try:
+                realpath = de_img.url_t.replace("_t","").replace("/uploads/thumb/","")
+                zipf.write(os.getcwd()+"/images/"+realpath)
+            except Exception as e:
+                print(e.args)
+                pass
+
+        zipf.close()
+        return redirect(url_for('download_all'))
+
+    return send_from_directory(os.getcwd()+"/images/",'img.zip')
+
+# 上传历史
+@app.route('/upload_history/')
+def up_his():
+    list = Photo.query.order_by("timestamp").all()
+
+    return render_template('history.html',list=list)
+
+# 自定义过滤器
+def time_fil(str):
+    result = str.strftime("%Y-%m-%d %H:%M:%S")
+
+    return result
+
+# 注册过滤器
+app.jinja_env.filters["time_fil"] = time_fil
 
 if __name__ == '__main__':
     app.run()

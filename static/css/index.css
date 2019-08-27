@@ -1,15 +1,17 @@
 html{
     height: 100%;
-}
-body{
     background-image: url("/back.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     color: white;
 }
+body{
+    background-color: transparent!important;
+}
 .main{
     padding: 0;
+    background-color: transparent!important;
 }
 .main .titleout{
     background: #eeeeee;
@@ -25,6 +27,7 @@ body{
     transform: translateX(-50%);
     top: 240px;
     padding: 10px 30px 10px 30px;
+    width: fit-content;
 }
 .title h1{
     font-size: 80px;
@@ -51,6 +54,14 @@ button:hover{
     padding: 15px 15px 15px 15px;
     font-size: 20px;
     transition: 0.3s ease;
+}
+@media (max-width: 550px) {
+    .main .title{
+        top: 270px;
+    }
+    .title h1{
+        font-size: 40px;
+    }
 }
 .goto{
     position: fixed;

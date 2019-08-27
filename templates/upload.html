@@ -21,10 +21,19 @@
     </div>
 </div>
 <div class="main">
-    <p class="count text-center">目前图片数量: {{ imgs|length }}</p>
+    <div class="info list-group-item-info">
+        <span class="count text-center">目前图片数量: {{ imgs|length }}</span>
+        <span class="count2">最近图片: 50</span>
+        <span class="count3" onclick="window.location.href='/upload_history/'">上传历史</span>
+        <span class="count4" onclick="list_del()">批量操作</span>
+        <span class="count5" id="count6" onclick="list_dow()">下载</span>
+        <span class="count5" id="count5" onclick="del()">删除</span>
+        <span class="count5" id="count7" onclick="cancel()">取消</span>
+    </div>
+
     <div class="row">
         {% for img in imgs %}
-            <a href="{{ '/edit/'~img.id }}" class="img col-md-2 col-sm-4" style="background-image:url('{{ img.url_t }}')"></a>
+            <a href="{{ '/edit/'~img.id }}" class="img col-md-2 col-sm-4" style="background-image:url('{{ img.url_t }}')"><input name="check" class="checkbox" type="checkbox" value="{{ img.id }}"></a>
         {% endfor %}
     </div>
 </div>
@@ -40,5 +49,7 @@
         $("#namelist pre").html(filelist)
 })
 </script>
+<script src="/js/del_list.js"></script>
+
 </body>
 </html>

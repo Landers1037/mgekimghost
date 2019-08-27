@@ -66,14 +66,58 @@ input#submit:hover{
     color: #fff;
     transition: 0.3s ease;
 }
-.count{
+.info{
+    width: 80%;
     margin: 0 auto;
-    margin-top: 10px;
+    font-size: 0;/*消除水平间隙*/
+}
+.count{
+    /*margin: 0 auto;*/
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
     width: fit-content;
     font-size: 14px;
     padding: 5px 10px 5px 10px;
     background: #404040;
     color: white;
+}
+.count2{
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: fit-content;
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+    background: #2a5caa;
+    color: white;
+}
+.count3{
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: fit-content;
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+    background: #999999;
+    color: white;
+    cursor: pointer;
+}
+.count4{
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: fit-content;
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+    background: #de3163;
+    color: white;
+    cursor: pointer;
+}
+.count4:hover,.count3:hover{
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: 0.3s ease;
 }
 .row{
     width: 80%;
@@ -95,6 +139,24 @@ input#submit:hover{
     overflow-y: auto;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     background: #f0f0f0;
+}
+.count5{
+    display: inline-block;
+    opacity: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: fit-content;
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+    background: #000000;
+    color: white;
+    cursor: pointer;
+}
+.checkbox{
+    display: none;
+    width: 25px;
+    height: 25px;
 }

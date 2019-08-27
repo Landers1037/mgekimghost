@@ -1,0 +1,69 @@
+body{
+    background: #ffffff;
+    font-family: 'Microsoft YaHei UI','Helvetica Neue','Segoe UI',sans-serif;
+}
+.title{
+    display: block;
+    text-shadow: -3px 2px 3px #404040;
+    font-family: "Consolas",sans-serif;
+    background: #808080;
+    font-size: 25px;
+    color: white;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+}
+.title:hover{
+    text-decoration: none;
+    color: white;
+}
+.main{
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
+}
+@media (max-width: 550px){
+    .main{
+        width: 100%;
+    }
+}
+.image{
+    border: 2px solid #808080;
+    position: relative;
+    margin-top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 640px;
+}
+.code{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.code p{
+    width: 90px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border: 1px solid #404040;
+}
+.code .list-group-item{
+    font-size: 85%;
+    padding: 5px 10px 5px 10px;
+}
+.code a{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+@media (max-width: 550px) {
+    .code a{
+        font-size: 80%;
+    }
+}
+.code span{
+    float: right;
+    padding: 5px 4px 5px 4px;
+    margin-right: 20px;
+    font-size: 80%;
+    background: #888888;
+    color: white;
+}

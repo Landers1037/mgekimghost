@@ -14,7 +14,6 @@ def save_image(files,photos):
     # if files:
         # 处理文件名
         filename = hashlib.md5(str(time.time()).encode('utf-8')).hexdigest()[:10]
-        print(files)
         image = photos.save(img,name=filename+'.')
         file_url = photos.url(image)
         url_t = create_thumbnail(image,photos)  # 创建缩略图
