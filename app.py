@@ -58,6 +58,10 @@ class Photo(db.Model):
 def index():
     return render_template('index.html')
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
 @app.route('/login/')
 def login():
 
@@ -84,6 +88,29 @@ def new_photo():
         return redirect(url_for('new_photo'))
 
     return render_template('upload.html', form=form,imgs=imgs[:50])
+
+@app.route('/upload_new/', methods=['GET', 'POST'])
+# @login_required
+def new_upload():
+    imgs = Photo.query.all()
+    form = NewAlbumForm()
+    # if form.validate_on_submit():
+    if request.method == 'POST' and 'photo' in request.files:
+        images = save_image(request.files.getlist("photo"),photos=photos)
+        # images = request.files.getlist("photo") # 作用域
+        title = form.title.data
+        # 这里把上传的第一张图片作为封面的初始值
+
+        for url in images:
+            photo = Photo(url=url[0],url_t=url[1])
+            db.session.add(photo)
+        db.session.commit()
+        flash(u'上传完成', 'success')
+        # 跳转到批量编辑页面
+        return redirect(url_for('new_upload'))
+
+    return render_template('upload_new.html', form=form,imgs=imgs[:50])
+
 
 # 缩略图路径
 @app.route('/uploads/thumb/<filename>')

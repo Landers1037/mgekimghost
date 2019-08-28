@@ -71,7 +71,15 @@ button:hover{
     color: #eeeeee;
     padding: 5px 10px 5px 10px;
 }
-.goto:hover{
+.goto:hover,.about:hover{
     color: #eeeeee;
     text-decoration: none;
+}
+.about{
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    background: cornflowerblue;
+    color: #eeeeee;
+    padding: 5px 10px 5px 10px;
 }

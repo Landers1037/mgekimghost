@@ -54,17 +54,29 @@ input#photo{
     background: #2a8fbd;
     transition: 0.3s ease;
 }
-input#submit{
+input#submit,input#button{
     background: #eeeeee;
     width: 120px;
     padding: 4px 0 4px 0;
     border-radius: 20px;
     border: none;
 }
-input#submit:hover{
+input#submit:hover,input#button:hover{
     background: #222222;
     color: #fff;
     transition: 0.3s ease;
+}
+.progress{
+    display: none;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 300px;
+    height: 2rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+.progress-bar{
+    height: 2rem;
 }
 .info{
     width: 80%;

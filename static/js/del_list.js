@@ -65,4 +65,8 @@
             $(this).prop("checked",false);
             $(this).attr("checked",false);
         });
+    $("#count5").css("opacity","0");
+    $("#count6").css("opacity","0");
+    $("#count7").css("opacity","0");
+    $(".checkbox").hide();
     }

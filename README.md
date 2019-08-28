@@ -8,12 +8,19 @@ mgek图床项目，一个flask简易图床
 
 ### 🕓未完成
 
-- 使用ajax异步上传，同时添加上传进度条
+- 使用ajax异步上传，同时添加上传进度条(已完成)
 - 图片上传后的直链获取框
 - 多文件上传后的直链获取
 - 多张图片的删除功能(基本完成)
 - 图片的信息记录
 - 移动设备的图片自适应问题(待优化)
+
+### 🚀最近更新
+
+- 优化了批量编辑的按钮显示逻辑，取消按钮点击效果更完善
+- 优化了图片的显示逻辑，按照最新上传时间排序
+- 新增**Ajax**异步上传页面添加上传**进度条**，访问[ajax_upload](/upload_new/)进入新版上传页面
+- 新增**关于**界面
 
 ### 🔵使用
 
@@ -64,7 +71,17 @@ echo "check port 5000"
 
 上传历史
 
+
+
 ![6](./demo6.jpg)
+
+新版上传页面(ajax)
+
+![demo7](./demo7.jpg)
+
+关于页面
+
+![demo8](./demo8.jpg)
 
 ### ♻自定义
 
@@ -78,7 +95,7 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(os.getcwd(), 'img.db')
 
 ### ™版权
 
-演示图片出自<strong style="color:royalblue">wlop</strong>
-本应用作者<strong style="color:royalblue">Landers</strong>
+演示图片出自<strong style="color:royalblue">wlop</strong><br>
+本应用作者<strong style="color:royalblue">Landers</strong><br>
 我的主页<a href="http://lrenj.top">Landers1037</a>
 
