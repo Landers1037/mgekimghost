@@ -9,6 +9,8 @@
 </head>
 <body>
 <a class="title text-center" href="/">Mgek图床</a>
+<a href="/logout" style="color: white;background: #378de5;padding:5px 10px 5px 10px;position: fixed;top: 30px;right: 30px;font-size: 18px;text-decoration: none">登出</a>
+
 <div class="form text-center">
  <form class="form form-horizontal" method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
@@ -30,16 +32,18 @@
         <span class="count2">最近图片: 50</span>
         <span class="count3" onclick="window.location.href='/upload_history/'">上传历史</span>
         <span class="count4" onclick="list_del()">批量操作</span>
+        <span class="count5" id="count8" onclick="get_url()">直链获取</span>
         <span class="count5" id="count6" onclick="list_dow()">下载</span>
         <span class="count5" id="count5" onclick="del()">删除</span>
         <span class="count5" id="count7" onclick="cancel()">取消</span>
     </div>
-
-    <div class="row">
+<div id="ajax_refresh">
+    <div class="row" id="row">
         {% for img in imgs|reverse %}
             <a href="{{ '/edit/'~img.id }}" class="img col-md-2 col-sm-4" style="background-image:url('{{ img.url_t }}')"><input name="check" class="checkbox" type="checkbox" value="{{ img.id }}"></a>
         {% endfor %}
     </div>
+</div>
 </div>
 
 <script>

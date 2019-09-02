@@ -1,6 +1,6 @@
 from flask import Flask, url_for, request, render_template, current_app, send_from_directory,redirect,flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager,current_user,UserMixin,login_required
+from flask_login import LoginManager, current_user, UserMixin, login_required, login_user, logout_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FileField, TextAreaField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
@@ -8,7 +8,7 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 
 import datetime,os,re
 from upload import save_image
-from Config import Common,users
+from Config import Common,users,urls
 
 app = Flask(__name__,static_url_path='')
 app.config.from_object(Common)
@@ -22,15 +22,12 @@ configure_uploads(app, photos)
 
 @login.user_loader
 def load_user(user_id):  # 创建用户加载回调函数，接受用户 ID 作为参数
-    for user in users:
-        if user_id == user['id']:
-            user = User()
-            user.id = user_id
-            return user  # 返回用户对象
+    if user_id == users['id']:
+        user = User()
+        user.id = user_id
+        return user  # 返回用户对象
 
 login.login_view = 'login'
-
-
 
 #用户认证
 class User(UserMixin):
@@ -62,13 +59,37 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/login/')
+@app.route('/login/',methods=['GET','POST'])
 def login():
+    next = '' #登陆后的跳转页面凭据
+    if request.args.get("next"):
+        next = request.args.get("next")
+
+    if request.method == 'POST' and len(next)>0:
+        getus = request.form["login[username]"]
+        getpw = request.form["login[password]"]
+        if getus == users["username"] and getpw == users["password"]:
+            curr_user = User()
+            curr_user.id = getus
+            # 通过Flask-Login的login_user方法登录用户
+            login_user(curr_user)
+
+            return redirect(next)
+        else:
+            return redirect(url_for('login'))
 
     return render_template('login.html')
+
+# 登出
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return render_template('logout.html')
+
 # 图片上传
 @app.route('/upload/', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_photo():
     imgs = Photo.query.all()
     form = NewAlbumForm()
@@ -89,8 +110,9 @@ def new_photo():
 
     return render_template('upload.html', form=form,imgs=imgs[:50])
 
+# 新版ajax上传
 @app.route('/upload_new/', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_upload():
     imgs = Photo.query.all()
     form = NewAlbumForm()
@@ -119,6 +141,7 @@ def uploaded_file(filename):
 
 #照片编辑页面
 @app.route('/edit/<string:name>',methods=['GET','POST'])
+@login_required
 def edit(name):
     img = Photo.query.get(int(name))
     if request.method == 'POST':
@@ -138,6 +161,7 @@ def edit(name):
 
 # 批量删除
 @app.route('/edit/',methods=['GET','POST'])
+@login_required
 def del_all():
     if request.method == 'POST':
         ids = request.form["ids"].split(",")
@@ -181,8 +205,29 @@ def download_all():
 
     return send_from_directory(os.getcwd()+"/images/",'img.zip')
 
+# 批量直链提取
+
+@app.route('/urls/',methods=['GET','POST'])
+def get_urls():
+    global urls
+    if request.method == 'POST':
+        urls = []
+        ids = request.form["ids"].split(",")
+        for id in ids:
+            url = Photo.query.get(id).url
+            try:
+                urls.append(url)
+            except Exception as e:
+                print(e.args)
+                pass
+
+        return redirect(url_for('get_urls'))
+
+    return render_template('urls.html',urls=urls)
+
 # 上传历史
 @app.route('/upload_history/')
+@login_required
 def up_his():
     list = Photo.query.order_by("timestamp").all()
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Urls</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/urls.css" rel="stylesheet">
+</head>
+<body>
+<a class="title text-center" href="/">Mgek图床</a>
+
+<div class="list-group">
+    <li class="list-group-item text-center text-warning bg-danger">图片直链</li>
+    {% for url in urls[:10] %}
+    <li class="list-group-item">
+        <code>{{ url }}</code><i onclick="copy()">Click 📄</i>
+    </li>
+    {% endfor %}
+    <li class="list-group-item text-center text-success" id="showall">全部直链</li>
+    {% for url in urls[11:] %}
+    <li class="list-group-item hide">
+        <code>{{ url }}</code>
+    </li>
+    {% endfor %}
+</div>
+
+<div class="copyurl" id="copy">
+    <pre>
+    {% for url in urls %}
+        <code>{{ url }}</code>
+    {% endfor %}
+    </pre>
+</div>
+<script>
+    var hideurl = document.getElementsByClassName("hide");
+    var show = document.getElementById("showall");
+    var precopy = document.getElementById("copy");
+    show.onclick = function () {
+        for(var i=0;i<hideurl.length;i++){
+            hideurl[i].style.display = "inline-block";
+        }
+    };
+    function copy() {
+        if(precopy.style.display=="none"){
+            precopy.style.display = "block"
+        }else {
+            precopy.style.display = "none"
+        }
+
+    }
+</script>
+</body>
+</html>

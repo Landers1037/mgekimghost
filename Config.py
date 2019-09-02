@@ -1,9 +1,8 @@
 # 配置文件
 import os
 
-users = [
-    {'id':'root', 'username': 'root', 'password': '123456'},
-]
+users =  {'id':'root', 'username': 'root', 'password': '123456'}
+urls = []
 
 class Common():
     SECRET_KEY = 'this is a secret'

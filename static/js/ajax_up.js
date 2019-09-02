@@ -19,6 +19,9 @@ function up() {
                 return myxhr;
             },
             // async : false,
+            success: function () {
+                $("#ajax_refresh").load(location.href+' #row');
+            }
 
         }).fail(function () {
             alert('上传失败');
